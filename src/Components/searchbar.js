@@ -1,22 +1,21 @@
 import * as React from 'react';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Grid from '@mui/material/Grid';
 
-export default function SearchBar(){
-    const [searchterm,setSearchterm]=useState(null);
+
+export default function SearchBar(props){
+   
+    const [searchterm,setSearchterm]=useState();
     return(
+      <Grid container>
+        <Grid item md={12}>
         <Box sx={{display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -29,19 +28,24 @@ export default function SearchBar(){
             id="filled-adornment-password"
             value={searchterm}
             onChange={(e)=>setSearchterm(e.target.value)}
+            
 
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
                   edge="end"
-                  
+                  onClick={()=>props.searchmovies(searchterm)}
                 ><SearchTwoToneIcon/>
                 </IconButton>
               </InputAdornment>
             }
           />
+          {console.log(searchterm)}
         </FormControl>
         </Box>
+        
+        </Grid>
+        </Grid>
     )
         }
